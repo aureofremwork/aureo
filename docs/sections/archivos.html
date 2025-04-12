@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Archivos - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #fbbf24;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --text-color: #334155;
+            --link-color: #0ea5e9;
+            --hover-color: #f97316;
+        }
+        body {
+            color: var(--text-color);
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+            background-color: #fffbeb;
+        }
+        .feature-card {
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(251, 191, 36, 0.2);
+            border-color: var(--accent-color);
+        }
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+        .alert-info {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .code-example {
+            background-color: #fef3c7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        .list-group-item {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .list-group-item a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">Gestión de Archivos</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Aprende a gestionar archivos de manera eficiente y segura con el Framework Áureo.
+            </div>
+
+            <h2 class="mt-5 mb-4">Subida de Archivos</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-upload me-2 text-primary"></i>Subida Básica</h5>
+                        <pre><code class="language-php">public function store()
+{
+    $file = request()->file('documento');
+    
+    if ($file->isValid()) {
+        $path = $file->store('uploads');
+        return response()->json([
+            'path' => $path
+        ]);
+    }
+}</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-shield-check me-2 text-primary"></i>Validación de Archivos</h5>
+                        <pre><code class="language-php">$request->validate([
+    'imagen' => [
+        'required',
+        'file',
+        'image',
+        'max:2048',
+        'mimes:jpeg,png,jpg'
+    ]
+]);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Almacenamiento</h2>
+            
+            <div class="code-example">
+                <h4>Configuración de Almacenamiento</h4>
+                <pre><code class="language-php">// config/storage.php
+return [
+    'default' => 'local',
+    
+    'disks' => [
+        'local' => [
+            'driver' => 'local',
+            'root' => storage_path('app')
+        ],
+        
+        's3' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET')
+        ]
+    ]
+];</code></pre>
+            </div>
+
+            <div class="code-example">
+                <h4>Uso del Sistema de Archivos</h4>
+                <pre><code class="language-php">// Guardar un archivo
+$path = Storage::disk('local')->put('archivo.txt', 'Contenido');
+
+// Obtener contenido
+$contenido = Storage::get('archivo.txt');
+
+// Verificar existencia
+if (Storage::exists('archivo.txt')) {
+    // El archivo existe
+}
+
+// Eliminar archivo
+Storage::delete('archivo.txt');</code></pre>
+            </div>
+
+            <h2 class="mt-5 mb-4">Manipulación de Imágenes</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5>Redimensionar Imágenes</h5>
+                        <pre><code class="language-php">use System\Image;
+
+$image = Image::make($request->file('imagen'));
+$image->resize(300, 200);
+$image->save(storage_path('app/public/thumb.jpg'));</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5>Aplicar Filtros</h5>
+                        <pre><code class="language-php">$image = Image::make($path);
+$image->brightness(-15);
+$image->contrast(10);
+$image->greyscale();
+$image->save();</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Descarga de Archivos</h2>
+            <div class="code-example">
+                <pre><code class="language-php">public function download($id)
+{
+    $documento = Documento::findOrFail($id);
+    
+    if (Storage::exists($documento->path)) {
+        return Storage::download(
+            $documento->path,
+            $documento->nombre_original
+        );
+    }
+    
+    return response()->json([
+        'error' => 'Archivo no encontrado'
+    ], 404);
+}</code></pre>
+            </div>
+
+            <h2 class="mt-5 mb-4">Buenas Prácticas</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-shield me-2 text-primary"></i>Seguridad</h5>
+                        <ul>
+                            <li>Validar tipos de archivo permitidos</li>
+                            <li>Establecer límites de tamaño</li>
+                            <li>Sanitizar nombres de archivo</li>
+                            <li>Usar directorios seguros</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-speedometer me-2 text-primary"></i>Optimización</h5>
+                        <ul>
+                            <li>Comprimir archivos grandes</li>
+                            <li>Generar miniaturas para imágenes</li>
+                            <li>Implementar caché</li>
+                            <li>Usar almacenamiento en la nube para escalabilidad</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h2>Siguientes Pasos</h2>
+                <p>Para mejorar la gestión de archivos en tu aplicación, considera:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./api.html">Implementar endpoints para gestión de archivos</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./validacion.html">Mejorar la validación de archivos</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./practicas.html">Explorar mejores prácticas de almacenamiento</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+</body>
+</html>

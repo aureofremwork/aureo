@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formularios - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #fbbf24;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --text-color: #334155;
+            --link-color: #0ea5e9;
+            --hover-color: #f97316;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .validation-rule {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">Validación de Formularios</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                La validación de formularios es esencial para garantizar que los datos ingresados por los usuarios cumplan con los requisitos necesarios antes de procesarlos.
+            </div>
+
+            <h2 class="mt-5 mb-4">Uso Básico</h2>
+            <p>Para validar un formulario en Áureo, sigue estos sencillos pasos:</p>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">1. Crear una instancia del validador</h5>
+                    <p>Primero, crea una instancia del validador pasando los datos del formulario y las reglas de validación:</p>
+                    <pre><code class="language-php">$validator = new Validator($request->all(), [
+    'email' => 'required|email',
+    'password' => 'required|min:8'
+]);</code></pre>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">2. Verificar la validación</h5>
+                    <p>Comprueba si la validación fue exitosa:</p>
+                    <pre><code class="language-php">if ($validator->validate()) {
+    // Los datos son válidos
+    // Continúa con el procesamiento
+} else {
+    // Los datos son inválidos
+    $errors = $validator->getErrors();
+    return back()->withErrors($errors);
+}</code></pre>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Reglas de Validación Disponibles</h2>
+            <p>Áureo incluye varias reglas de validación predefinidas para cubrir los casos de uso más comunes:</p>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="validation-rule">
+                        <h5>required</h5>
+                        <p>El campo debe estar presente y no puede estar vacío.</p>
+                        <small class="text-muted">Ejemplo: 'nombre' => 'required'</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="validation-rule">
+                        <h5>email</h5>
+                        <p>El campo debe ser una dirección de correo electrónico válida.</p>
+                        <small class="text-muted">Ejemplo: 'email' => 'required|email'</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="validation-rule">
+                        <h5>min:número</h5>
+                        <p>El campo debe tener una longitud mínima especificada.</p>
+                        <small class="text-muted">Ejemplo: 'password' => 'required|min:8'</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="validation-rule">
+                        <h5>max:número</h5>
+                        <p>El campo no debe exceder la longitud máxima especificada.</p>
+                        <small class="text-muted">Ejemplo: 'titulo' => 'required|max:100'</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="validation-rule">
+                        <h5>unique:tabla,columna</h5>
+                        <p>El valor debe ser único en la tabla y columna especificadas.</p>
+                        <small class="text-muted">Ejemplo: 'email' => 'required|email|unique:users,email'</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="validation-rule">
+                        <h5>confirmed</h5>
+                        <p>El campo debe tener un campo de confirmación correspondiente (campo_confirmation).</p>
+                        <small class="text-muted">Ejemplo: 'password' => 'required|min:8|confirmed'</small>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Mensajes de Error Personalizados</h2>
+            <p>Puedes personalizar los mensajes de error para cada regla de validación:</p>
+
+            <pre><code class="language-php">$validator = new Validator($request->all(), [
+    'email' => 'required|email',
+    'password' => 'required|min:8'
+], [
+    'email.required' => 'Por favor, ingresa tu correo electrónico',
+    'email.email' => 'El correo electrónico no es válido',
+    'password.required' => 'La contraseña es obligatoria',
+    'password.min' => 'La contraseña debe tener al menos 8 caracteres'
+]);</code></pre>
+
+            <h2 class="mt-5 mb-4">Ejemplo Práctico: Formulario de Registro</h2>
+            <p>Aquí tienes un ejemplo completo de cómo validar un formulario de registro:</p>
+
+            <pre><code class="language-php">public function register(Request $request)
+{
+    $validator = new Validator($request->all(), [
+        'name' => 'required|max:100',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:8|confirmed'
+    ]);
+
+    if (!$validator->validate()) {
+        return back()
+            ->withErrors($validator->getErrors())
+            ->withInput();
+    }
+
+    // Crear el usuario si la validación es exitosa
+    User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => hash_password($request->password)
+    ]);
+
+    return redirect('/login')
+        ->with('success', '¡Registro exitoso! Por favor, inicia sesión.');
+}</code></pre>
+
+            <div class="alert alert-success mt-4">
+                <i class="bi bi-lightbulb me-2"></i>
+                <strong>Consejo:</strong> Siempre valida los datos del usuario antes de procesarlos o guardarlos en la base de datos. Esto ayuda a mantener la integridad de tus datos y mejora la experiencia del usuario al proporcionar retroalimentación inmediata sobre errores de entrada.
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+</body>
+</html>

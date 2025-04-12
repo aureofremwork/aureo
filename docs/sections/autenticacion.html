@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticación - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #fbbf24;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --text-color: #334155;
+            --link-color: #0ea5e9;
+            --hover-color: #f97316;
+        }
+        body {
+            color: var(--text-color);
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+            background-color: #fffbeb;
+        }
+        .method-card {
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        .method-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(251, 191, 36, 0.2);
+            border-color: var(--accent-color);
+        }
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+        .alert-info {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .alert-warning {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .code-example {
+            background-color: #fef3c7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        .list-group-item {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .list-group-item a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">Autenticación</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Aprende a implementar un sistema de autenticación seguro en tu aplicación usando el Framework Áureo. Esta guía te enseñará:
+                <ul class="mt-3 mb-0">
+                    <li>Diferentes métodos de autenticación disponibles</li>
+                    <li>Implementación paso a paso de login y registro</li>
+                    <li>Protección de rutas y recursos</li>
+                    <li>Gestión de sesiones y tokens</li>
+                    <li>Recuperación de contraseñas y verificación de email</li>
+                </ul>
+            </div>
+
+            <h2 class="mt-5 mb-4">Métodos de Autenticación</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="method-card">
+                        <h5><i class="bi bi-person-badge me-2 text-primary"></i>Autenticación Tradicional</h5>
+                        <p>Sistema de login basado en sesiones con soporte para recordar usuario.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="method-card">
+                        <h5><i class="bi bi-key me-2 text-primary"></i>JWT</h5>
+                        <p>Autenticación mediante tokens JWT para APIs y aplicaciones SPA.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-warning mt-4 mb-5">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                <strong>Importante:</strong> Asegúrate de configurar correctamente las variables de entorno relacionadas con la seguridad.
+            </div>
+
+            <h2 class="mb-4">Implementación Básica</h2>
+            
+            <div class="code-example">
+                <h4>1. Configurar el Middleware de Autenticación</h4>
+                <pre><code class="language-php">// app/Middleware/AuthMiddleware.php
+namespace App\Middleware;
+
+class AuthMiddleware {
+    public function handle($request, $next) {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        return $next($request);
+    }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+                <h4>2. Implementar el Controlador de Autenticación</h4>
+                <pre><code class="language-php">// app/Controllers/AuthController.php
+namespace App\Controllers;
+
+class AuthController extends Controller {
+    public function login() {
+        $credentials = request()->only(['email', 'password']);
+        
+        if (auth()->attempt($credentials)) {
+            return redirect('/dashboard');
+        }
+        
+        return back()->with('error', 'Credenciales inválidas');
+    }
+
+    public function logout() {
+        auth()->logout();
+        return redirect('/login');
+    }
+}</code></pre>
+            </div>
+
+            <div class="code-example">
+                <h4>3. Definir las Rutas</h4>
+                <pre><code class="language-php">// routes/web.php
+Router::get('/login', 'AuthController@showLogin');
+Router::post('/login', 'AuthController@login');
+Router::post('/logout', 'AuthController@logout');
+
+Router::group(['middleware' => 'auth'], function() {
+    Router::get('/dashboard', 'DashboardController@index');
+});</code></pre>
+            </div>
+
+            <h2 class="mt-5 mb-4">Características Avanzadas</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="method-card">
+                        <h5><i class="bi bi-shield-check me-2 text-primary"></i>Roles y Permisos</h5>
+                        <p>Sistema flexible de control de acceso basado en roles.</p>
+                        <pre><code class="language-php">if (auth()->user()->hasRole('admin')) {
+    // Acceso a funcionalidades de administrador
+}</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="method-card">
+                        <h5><i class="bi bi-fingerprint me-2 text-primary"></i>Autenticación de Dos Factores</h5>
+                        <p>Añade una capa extra de seguridad a tu aplicación.</p>
+                        <pre><code class="language-php">auth()->require2FA();</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h2>Siguientes Pasos</h2>
+                <p>Para mejorar la seguridad de tu aplicación, considera:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./validacion.html">Implementar validación de formularios</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./api.html">Configurar autenticación para APIs</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./logging.html">Configurar logging de eventos de seguridad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+</body>
+</html>

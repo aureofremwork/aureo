@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APIs REST - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #fbbf24;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --text-color: #334155;
+            --link-color: #0ea5e9;
+            --hover-color: #f97316;
+        }
+        body {
+            color: var(--text-color);
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+            background-color: #fffbeb;
+        }
+        .feature-card {
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(251, 191, 36, 0.2);
+            border-color: var(--accent-color);
+        }
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+        .alert-info {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .code-example {
+            background-color: #fef3c7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        .list-group-item {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .list-group-item a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: var(--hover-color);
+        }
+        .endpoint-card {
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .endpoint-header {
+            background-color: #fef3c7;
+            padding: 1rem;
+            border-bottom: 1px solid var(--accent-color);
+        }
+        .endpoint-body {
+            padding: 1rem;
+        }
+        .method-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        .method-get { background-color: #22c55e; color: white; }
+        .method-post { background-color: #3b82f6; color: white; }
+        .method-put { background-color: #f59e0b; color: white; }
+        .method-delete { background-color: #ef4444; color: white; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">APIs REST</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Aprende a crear APIs RESTful robustas y seguras con el Framework Áureo.
+            </div>
+
+            <h2 class="mt-5 mb-4">Configuración Básica</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-gear-fill me-2 text-primary"></i>Configuración de Rutas</h5>
+                        <pre><code class="language-php">// routes/api.php
+Router::prefix('api/v1')->group(function() {
+    Router::get('/users', 'ApiController@getUsers');
+    Router::post('/users', 'ApiController@createUser');
+});</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5><i class="bi bi-shield-fill me-2 text-primary"></i>Middleware API</h5>
+                        <pre><code class="language-php">// Middleware/ApiAuthMiddleware.php
+class ApiAuthMiddleware {
+    public function handle($request, $next) {
+        if (!$this->validateApiToken()) {
+            return response()->json([
+                'error' => 'Unauthorized'
+            ], 401);
+        }
+        return $next($request);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Controladores API</h2>
+            
+            <div class="code-example">
+                <h4>Ejemplo de Controlador API</h4>
+                <pre><code class="language-php">namespace App\Controllers\Api;
+
+class ProductController extends ApiController
+{
+    public function index()
+    {
+        $products = Product::paginate(20);
+        
+        return response()->json([
+            'data' => $products,
+            'meta' => [
+                'total' => $products->total(),
+                'page' => $products->currentPage()
+            ]
+        ]);
+    }
+
+    public function store()
+    {
+        $validated = request()->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable|string'
+        ]);
+
+        $product = Product::create($validated);
+
+        return response()->json([
+            'message' => 'Product created successfully',
+            'data' => $product
+        ], 201);
+    }
+}</code></pre>
+            </div>
+
+            <h2 class="mt-5 mb-4">Endpoints API</h2>
+            
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge method-get">GET</span>
+                    <code>/api/v1/products</code>
+                </div>
+                <div class="endpoint-body">
+                    <h5>Listar Productos</h5>
+                    <p>Retorna una lista paginada de productos.</p>
+                    <h6>Parámetros de Query:</h6>
+                    <ul>
+                        <li><code>page</code> - Número de página (default: 1)</li>
+                        <li><code>per_page</code> - Elementos por página (default: 20)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge method-post">POST</span>
+                    <code>/api/v1/products</code>
+                </div>
+                <div class="endpoint-body">
+                    <h5>Crear Producto</h5>
+                    <p>Crea un nuevo producto en el sistema.</p>
+                    <h6>Cuerpo de la Petición:</h6>
+                    <pre><code class="language-json">{
+    "name": "Nuevo Producto",
+    "price": 99.99,
+    "description": "Descripción del producto"
+}</code></pre>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Manejo de Respuestas</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5>Respuestas Exitosas</h5>
+                        <pre><code class="language-php">return response()->json([
+    'success' => true,
+    'data' => $data,
+    'message' => 'Operation successful'
+], 200);</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <h5>Manejo de Errores</h5>
+                        <pre><code class="language-php">return response()->json([
+    'success' => false,
+    'error' => [
+        'code' => 'VALIDATION_ERROR',
+        'message' => $message
+    ]
+], 422);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Autenticación API</h2>
+            <div class="code-example">
+                <h4>JWT Authentication</h4>
+                <pre><code class="language-php">class AuthController extends ApiController
+{
+    public function login()
+    {
+        $credentials = request()->only(['email', 'password']);
+        
+        if ($token = auth()->attempt($credentials)) {
+            return response()->json([
+                'token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth()->factory()->getTTL() * 60
+            ]);
+        }
+        
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+}</code></pre>
+            </div>
+
+            <div class="mt-5">
+                <h2>Siguientes Pasos</h2>
+                <p>Para mejorar tus APIs, considera:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./autenticacion.html">Implementar autenticación avanzada</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./validacion.html">Mejorar la validación de datos</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./practicas.html">Explorar mejores prácticas de API</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
+</body>
+</html>

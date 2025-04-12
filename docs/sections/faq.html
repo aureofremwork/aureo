@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e293b;
+            --accent-color: #60a5fa;
+            --text-color: #334155;
+            --link-color: #2563eb;
+            --hover-color: #1d4ed8;
+        }
+        body {
+            color: var(--text-color);
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+            background-color: #fffbeb;
+        }
+        .feature-card {
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(251, 191, 36, 0.2);
+            border-color: var(--accent-color);
+        }
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+        .alert-info {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .code-example {
+            background-color: #fef3c7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        .list-group-item {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .list-group-item a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: var(--hover-color);
+        }
+        .faq-item {
+            margin-bottom: 2rem;
+        }
+        .faq-question {
+            background-color: #fff;
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .faq-answer {
+            padding: 1.25rem;
+            background-color: #fff;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid var(--primary-color);
+            border-top: none;
+            margin-top: -0.5rem;
+        }
+        .category-title {
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">Preguntas Frecuentes (FAQ)</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Bienvenido a la guía completa del Framework Áureo. Esta documentación está diseñada para ser comprensible tanto para principiantes como para desarrolladores experimentados. Aquí encontrarás:
+                <ul class="mt-3 mb-0">
+                    <li>Explicaciones detalladas de cada característica</li>
+                    <li>Ejemplos prácticos con código real</li>
+                    <li>Tutoriales paso a paso para crear aplicaciones</li>
+                    <li>Soluciones a problemas comunes</li>
+                    <li>Mejores prácticas y consejos de optimización</li>
+                </ul>
+            </div>
+
+            <h2 class="category-title">🚀 Primeros Pasos</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Qué necesito para empezar con el Framework Áureo?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>Para comenzar a crear aplicaciones con el Framework Áureo, necesitarás:</p>
+                    <ul>
+                        <li>Un ordenador con cualquier sistema operativo (Windows, Mac o Linux)</li>
+                        <li>PHP 8.0 o superior instalado en tu sistema</li>
+                        <li>Las extensiones básicas de PHP: PDO, JSON, y OpenSSL</li>
+                        <li>Composer instalado (te explicamos cómo instalarlo más abajo)</li>
+                        <li>Un editor de código (recomendamos Visual Studio Code)</li>
+                    </ul>
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        <strong>¿Nuevo en programación?</strong> No te preocupes, te guiaremos paso a paso en la instalación de todas las herramientas necesarias.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Cómo instalo el Framework Áureo?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>La instalación es muy sencilla. Sigue estos pasos:</p>
+                    <ol>
+                        <li>Abre tu terminal o línea de comandos</li>
+                        <li>Navega hasta la carpeta donde quieres crear tu proyecto</li>
+                        <li>Ejecuta el siguiente comando:</li>
+                    </ol>
+                    <pre><code class="language-bash">composer create-project aureo/framework mi-proyecto</code></pre>
+                    <p>Este comando creará una nueva carpeta llamada "mi-proyecto" con todo lo necesario para empezar.</p>
+                    <div class="alert alert-success mt-3">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <strong>¡Listo!</strong> Tu proyecto ya está configurado con AdminLTE como plantilla por defecto.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">💻 Creando tu Primera Aplicación</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Cómo creo mi primera página con AdminLTE?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>Crear una nueva página es muy sencillo gracias a AdminLTE. Sigue estos pasos:</p>
+                    <ol>
+                        <li>Primero, crea un nuevo controlador:</li>
+                        <pre><code class="language-bash">php aureo make:controller BienvenidaController</code></pre>
+                        
+                        <li>Abre el archivo creado en app/Controllers/BienvenidaController.php y añade:</li>
+                        <pre><code class="language-php">namespace App\Controllers;
+
+class BienvenidaController {
+    public function index() {
+        return view('bienvenida/index', [
+            'titulo' => 'Mi Primera Página',
+            'mensaje' => '¡Hola Mundo!'
+        ]);
+    }
+}</code></pre>
+
+                        <li>Crea una nueva vista en app/Views/bienvenida/index.php:</li>
+                        <pre><code class="language-php"><!-- Extendemos la plantilla AdminLTE -->
+<?php extend('layouts/admin'); ?>
+
+<!-- Contenido de la página -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <h1><?php echo $titulo; ?></h1>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <?php echo $mensaje; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></code></pre>
+
+                        <li>Finalmente, añade la ruta en system/routes.php:</li>
+                        <pre><code class="language-php">Router::get('/bienvenida', 'BienvenidaController@index');</code></pre>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        <strong>Consejo:</strong> AdminLTE incluye muchos componentes prediseñados como cards, botones, tablas y más. Explora la documentación de AdminLTE para ver todos los elementos disponibles.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Cómo manejo los errores y mensajes para el usuario?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>El Framework Áureo hace que el manejo de errores sea sencillo y amigable para el usuario. Aquí te mostramos cómo:</p>
+                    
+                    <h6 class="mt-4 mb-3">1. Mostrar mensajes al usuario</h6>
+                    <pre><code class="language-php">// En tu controlador
+public function guardar() {
+    try {
+        // Tu lógica aquí
+        flash('¡Datos guardados correctamente!', 'success');
+    } catch (Exception $e) {
+        flash('Hubo un error al guardar los datos', 'error');
+    }
+    return redirect('/dashboard');
+}</code></pre>
+
+                    <h6 class="mt-4 mb-3">2. Validación de formularios</h6>
+                    <pre><code class="language-php">public function registro() {
+    $validacion = validate($_POST, [
+        'nombre' => 'required|min:3',
+        'email' => 'required|email',
+        'password' => 'required|min:6'
+    ]);
+
+    if ($validacion->falla()) {
+        // Muestra los errores automáticamente en la vista
+        return back()->withErrors($validacion);
+    }
+
+    // Continúa con el registro
+}</code></pre>
+
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        <strong>Consejo:</strong> Usa la función helper <code>flash()</code> para mostrar mensajes temporales al usuario después de una acción.
+                    </div>
+
+                    <h6 class="mt-4 mb-3">3. Mostrando los mensajes en la vista</h6>
+                    <pre><code class="language-php"><!-- En tu vista AdminLTE -->
+<?php if (has_flash()): ?>
+    <div class="alert alert-<?php echo flash_type(); ?>">
+        <?php echo flash_message(); ?>
+    </div>
+<?php endif; ?>
+
+<!-- Mostrar errores de validación -->
+<?php if (has_errors()): ?>
+    <div class="alert alert-danger">
+        <ul>
+            <?php foreach(get_errors() as $error): ?>
+                <li><?php echo $error; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?></code></pre>
+                </div>
+            </div>
+
+            <h2 class="category-title">⚡ Optimización y Rendimiento</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Cómo puedo hacer que mi aplicación sea más rápida?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>El Framework Áureo incluye varias herramientas para optimizar el rendimiento de tu aplicación. Aquí te explicamos las más importantes:</p>
+                    
+                    <h6 class="mt-4 mb-3">1. Caché de Datos</h6>
+                    <pre><code class="language-php">// Guardar datos en caché
+cache_set('productos', $productos, 3600); // 1 hora
+
+// Obtener datos de caché
+$productos = cache_get('productos');
+
+// Caché con función de respaldo
+$productos = cache_remember('productos', 3600, function() {
+    return db_query('SELECT * FROM productos');
+});</code></pre>
+
+                    <h6 class="mt-4 mb-3">2. Optimización de Consultas</h6>
+                    <pre><code class="language-php">// Consulta optimizada con paginación
+$usuarios = db_paginate('usuarios', 10); // 10 usuarios por página
+
+// Consulta con relaciones (evita consultas N+1)
+$pedidos = db_query('pedidos')
+    ->with('cliente')
+    ->with('productos')
+    ->get();</code></pre>
+
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        <strong>Consejo:</strong> AdminLTE está optimizado por defecto. Sus archivos CSS y JS ya están minificados para mejor rendimiento.
+                    </div>
+
+                    <h6 class="mt-4 mb-3">3. Compresión de Imágenes</h6>
+                    <pre><code class="language-php">// Subir y optimizar una imagen
+$imagen = upload_image($_FILES['imagen'], [
+    'width' => 800,
+    'height' => 600,
+    'quality' => 80
+]);</code></pre>
+
+                    <div class="alert alert-success mt-3">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <strong>Buena Práctica:</strong> Utiliza las herramientas de desarrollo del navegador para medir el rendimiento de tu aplicación.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">🌐 Publicación de tu Aplicación</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Cómo publico mi aplicación en Internet?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>Publicar tu aplicación es más fácil de lo que piensas. Te guiaremos paso a paso:</p>
+
+                    <h6 class="mt-4 mb-3">1. Preparar tu Aplicación</h6>
+                    <pre><code class="language-bash"># Optimizar la aplicación
+php aureo optimize
+
+# Verificar que todo funciona
+php aureo test</code></pre>
+
+                    <h6 class="mt-4 mb-3">2. Configurar el Entorno</h6>
+                    <p>Crea o edita el archivo .env en la raíz de tu proyecto:</p>
+                    <pre><code class="language-ini"># Configuración básica
+APP_NAME="Mi Aplicación"
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://tudominio.com
+
+# Base de datos
+DB_HOST=localhost
+DB_NAME=mi_base_datos
+DB_USER=usuario
+DB_PASS=contraseña</code></pre>
+
+                    <div class="alert alert-warning mt-3">
+                        <i class="bi bi-shield-lock me-2"></i>
+                        <strong>¡Importante!</strong> Nunca compartas tu archivo .env ni lo subas a repositorios públicos.
+                    </div>
+
+                    <h6 class="mt-4 mb-3">3. Subir los Archivos</h6>
+                    <p>Sube estos archivos y carpetas a tu servidor:</p>
+                    <ul>
+                        <li>✅ Toda la carpeta <code>app</code></li>
+                        <li>✅ Toda la carpeta <code>public</code></li>
+                        <li>✅ Toda la carpeta <code>system</code></li>
+                        <li>✅ El archivo <code>.env</code></li>
+                        <li>❌ NO subas la carpeta <code>vendor</code> (la recrearemos)</li>
+                    </ul>
+
+                    <h6 class="mt-4 mb-3">4. Configurar el Servidor</h6>
+                    <p>Si usas Apache (el más común), crea o edita el archivo .htaccess:</p>
+                    <pre><code class="language-apache"># Archivo .htaccess
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]</code></pre>
+
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        <strong>Consejo:</strong> AdminLTE ya está configurado y optimizado para producción. No necesitas hacer nada especial con los assets.
+                    </div>
+
+                    <h6 class="mt-4 mb-3">5. Últimos Pasos</h6>
+                    <p>En tu servidor, ejecuta:</p>
+                    <pre><code class="language-bash"># Instalar dependencias
+composer install --no-dev
+
+# Ejecutar migraciones
+php aureo migrate
+
+# Limpiar caché
+php aureo cache:clear</code></pre>
+
+                    <div class="alert alert-success mt-3">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <strong>¡Listo!</strong> Tu aplicación ya está en línea. Visita tu dominio para verla en acción.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="category-title">🆘 Ayuda y Recursos</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h5><i class="bi bi-question-circle me-2 text-primary"></i>¿Dónde puedo encontrar más ayuda y recursos?</h5>
+                </div>
+                <div class="faq-answer">
+                    <p>Tenemos una comunidad activa y varios recursos para ayudarte en tu viaje de desarrollo:</p>
+                    
+                    <h6 class="mt-4 mb-3">Recursos Oficiales</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <i class="bi bi-book me-2"></i>
+                            <a href="/docs" target="_blank">Documentación Completa</a>
+                            <small class="text-muted d-block mt-1">Guías detalladas y tutoriales paso a paso</small>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-play-circle me-2"></i>
+                            <a href="/tutoriales" target="_blank">Videotutoriales</a>
+                            <small class="text-muted d-block mt-1">Aprende viendo ejemplos prácticos en video</small>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-code-square me-2"></i>
+                            <a href="/ejemplos" target="_blank">Ejemplos de Código</a>
+                            <small class="text-muted d-block mt-1">Proyectos de ejemplo listos para usar</small>
+                        </li>
+                    </ul>
+
+                    <h6 class="mt-4 mb-3">Comunidad</h6>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <i class="bi bi-discord me-2"></i>
+                            <a href="https://discord.gg/aureo" target="_blank">Canal de Discord</a>
+                            <small class="text-muted d-block mt-1">Chatea en tiempo real con otros desarrolladores</small>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-github me-2"></i>
+                            <a href="https://github.com/framework-aureo/aureo" target="_blank">GitHub</a>
+                            <small class="text-muted d-block mt-1">Código fuente y reporte de problemas</small>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-stack me-2"></i>
+                            <a href="https://stackoverflow.com/questions/tagged/aureo" target="_blank">Stack Overflow</a>
+                            <small class="text-muted d-block mt-1">Preguntas y respuestas de la comunidad</small>
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-info mt-4">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        <strong>¿Eres nuevo?</strong> Te recomendamos comenzar con nuestros tutoriales básicos y luego unirte al canal de Discord para obtener ayuda personalizada.
+                    </div>
+
+                    <div class="alert alert-success mt-3">
+                        <i class="bi bi-star me-2"></i>
+                        <strong>Consejo Pro:</strong> AdminLTE tiene su propia documentación extensa. Consulta la <a href="https://adminlte.io/docs" target="_blank">documentación de AdminLTE</a> para aprovechar al máximo la plantilla.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-apache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-ini.min.js"></script>
+</body>
+</html>

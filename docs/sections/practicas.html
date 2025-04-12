@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mejores Prácticas - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #fbbf24;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --text-color: #334155;
+            --link-color: #0ea5e9;
+            --hover-color: #f97316;
+        }
+        body {
+            color: var(--text-color);
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--primary-color);
+            background-color: #fffbeb;
+        }
+        .feature-card {
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(251, 191, 36, 0.2);
+            border-color: var(--accent-color);
+        }
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+        .alert-info {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .code-example {
+            background-color: #fef3c7;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        .list-group-item {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .list-group-item a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: var(--hover-color);
+        }
+        .practice-section {
+            margin-bottom: 3rem;
+        }
+        .practice-title {
+            color: var(--text-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">Mejores Prácticas</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Guía de mejores prácticas para desarrollar aplicaciones robustas y mantenibles con el Framework Áureo.
+            </div>
+
+            <div class="practice-section">
+                <h2 class="practice-title">Estructura del Proyecto</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5><i class="bi bi-folder me-2 text-primary"></i>Organización de Directorios</h5>
+                            <pre><code class="language-plaintext">app/
+  ├── Controllers/
+  ├── Models/
+  ├── Services/
+  ├── Repositories/
+  ├── Middleware/
+  └── Providers/
+
+resources/
+  ├── views/
+  ├── lang/
+  └── assets/
+
+tests/
+  ├── Unit/
+  └── Feature/</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5><i class="bi bi-diagram-3 me-2 text-primary"></i>Separación de Responsabilidades</h5>
+                            <ul>
+                                <li>Mantener controladores delgados</li>
+                                <li>Usar servicios para lógica de negocio</li>
+                                <li>Implementar repositorios para acceso a datos</li>
+                                <li>Crear modelos para relaciones y reglas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h2 class="practice-title">Patrones de Diseño</h2>
+                
+                <div class="code-example">
+                    <h4>Repository Pattern</h4>
+                    <pre><code class="language-php">interface UserRepositoryInterface
+{
+    public function find($id);
+    public function all();
+    public function create(array $data);
+    public function update($id, array $data);
+    public function delete($id);
+}
+
+class UserRepository implements UserRepositoryInterface
+{
+    protected $model;
+
+    public function __construct(User $model)
+    {
+        $this->model = $model;
+    }
+
+    public function find($id)
+    {
+        return $this->model->findOrFail($id);
+    }
+
+    // Implementación de otros métodos...
+}</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h4>Service Layer</h4>
+                    <pre><code class="language-php">class UserService
+{
+    protected $repository;
+    protected $mailer;
+
+    public function __construct(
+        UserRepositoryInterface $repository,
+        MailerInterface $mailer
+    ) {
+        $this->repository = $repository;
+        $this->mailer = $mailer;
+    }
+
+    public function register(array $data)
+    {
+        $user = $this->repository->create($data);
+        $this->mailer->sendWelcomeEmail($user);
+        return $user;
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h2 class="practice-title">Convenciones de Código</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5>Nomenclatura</h5>
+                            <ul>
+                                <li>PascalCase para clases</li>
+                                <li>camelCase para métodos y variables</li>
+                                <li>snake_case para archivos de configuración</li>
+                                <li>SCREAMING_SNAKE_CASE para constantes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5>Documentación</h5>
+                            <pre><code class="language-php">/**
+ * Procesa una transacción de pago.
+ *
+ * @param float $amount Monto a procesar
+ * @param string $currency Código de moneda
+ * @return Transaction
+ * @throws PaymentException
+ */
+public function processPayment(
+    float $amount,
+    string $currency
+): Transaction</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h2 class="practice-title">Seguridad</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5><i class="bi bi-shield-lock me-2 text-primary"></i>Validación de Entrada</h5>
+                            <pre><code class="language-php">public function store(Request $request)
+{
+    $validated = $request->validate([
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'
+    ]);
+
+    $validated['password'] = Hash::make(
+        $validated['password']
+    );
+
+    return User::create($validated);
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5><i class="bi bi-shield-check me-2 text-primary"></i>Protección CSRF</h5>
+                            <pre><code class="language-php">class VerifyCsrfToken extends Middleware
+{
+    protected $except = [
+        'api/*',
+        'webhook/*'
+    ];
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h2 class="practice-title">Testing</h2>
+                <div class="code-example">
+                    <h4>Unit Testing</h4>
+                    <pre><code class="language-php">class UserServiceTest extends TestCase
+{
+    public function test_can_create_user()
+    {
+        $service = new UserService(
+            $this->createMock(UserRepository::class),
+            $this->createMock(Mailer::class)
+        );
+
+        $user = $service->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com'
+        ]);
+
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertEquals('Test User', $user->name);
+    }
+}</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h4>Feature Testing</h4>
+                    <pre><code class="language-php">class UserRegistrationTest extends TestCase
+{
+    public function test_user_can_register()
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123'
+        ]);
+
+        $response->assertRedirect('/dashboard');
+        $this->assertDatabaseHas('users', [
+            'email' => 'test@example.com'
+        ]);
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h2 class="practice-title">Optimización</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5>Caché</h5>
+                            <pre><code class="language-php">public function getPopularPosts()
+{
+    return Cache::remember('popular_posts', 3600, function () {
+        return Post::with('author')
+                   ->orderBy('views', 'desc')
+                   ->take(10)
+                   ->get();
+    });
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="feature-card">
+                            <h5>Eager Loading</h5>
+                            <pre><code class="language-php">// Malo: N+1 queries
+$posts = Post::all();
+foreach ($posts as $post) {
+    echo $post->author->name;
+}
+
+// Bueno: 2 queries
+$posts = Post::with('author')->get();
+foreach ($posts as $post) {
+    echo $post->author->name;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h2>Recursos Adicionales</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./api.html">Guía de diseño de APIs</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./seguridad.html">Prácticas de seguridad</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="./testing.html">Guía completa de testing</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-php.min.js"></script>
+</body>
+</html>

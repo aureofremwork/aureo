@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalación - Framework Áureo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --primary-color: #fbbf24;
+            --secondary-color: #1e293b;
+            --accent-color: #f59e0b;
+            --text-color: #334155;
+            --link-color: #0ea5e9;
+            --hover-color: #f97316;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--secondary-color);
+        }
+        .sidebar-sticky {
+            height: calc(100vh - 48px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--hover-color);
+            background-color: rgba(255,255,255,0.15);
+        }
+        .nav-link.active {
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+        pre[class*="language-"] {
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .step-card {
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #fef3c7;
+            border-radius: 8px;
+        }
+        .requirement-card {
+            background-color: #fff;
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .requirement-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .alert {
+            border-radius: 12px;
+            border: none;
+        }
+        .alert-info {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+        .alert-success {
+            background-color: #f0fdf4;
+            color: #166534;
+        }
+        .list-group-item {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .list-group-item:hover {
+            background-color: #fef3c7;
+            border-color: var(--accent-color);
+        }
+        .list-group-item a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .list-group-item a:hover {
+            color: var(--hover-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar col-md-3 col-lg-2 d-md-block">
+        <div class="sidebar-sticky">
+            <div class="px-3 mb-4">
+                <h5 class="text-white">Framework Áureo</h5>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./instalacion.html">
+                        <i class="bi bi-download me-2"></i>Instalación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./autenticacion.html">
+                        <i class="bi bi-shield-lock me-2"></i>Autenticación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./vistas.html">
+                        <i class="bi bi-window me-2"></i>Vistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./controladores.html">
+                        <i class="bi bi-gear me-2"></i>Controladores
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./componentes.html">
+                        <i class="bi bi-puzzle me-2"></i>Componentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./validacion.html">
+                        <i class="bi bi-check-circle me-2"></i>Validación
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./migraciones.html">
+                        <i class="bi bi-database me-2"></i>Migraciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./api.html">
+                        <i class="bi bi-cloud me-2"></i>APIs REST
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./archivos.html">
+                        <i class="bi bi-file-earmark me-2"></i>Archivos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tareas.html">
+                        <i class="bi bi-clock me-2"></i>Tareas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./i18n.html">
+                        <i class="bi bi-translate me-2"></i>Internacionalización
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logging.html">
+                        <i class="bi bi-journal-text me-2"></i>Logging y Caché
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./practicas.html">
+                        <i class="bi bi-lightbulb me-2"></i>Mejores Prácticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./roadmap.html">
+                        <i class="bi bi-map me-2"></i>Roadmap
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./faq.html">
+                        <i class="bi bi-question-circle me-2"></i>FAQ
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="mb-4">Instalación</h1>
+            
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                Aprende a instalar y configurar el Framework Áureo en tu entorno de desarrollo. Esta guía detallada te ayudará a:
+                <ul class="mt-3 mb-0">
+                    <li>Preparar tu entorno de desarrollo</li>
+                    <li>Instalar todas las dependencias necesarias</li>
+                    <li>Configurar tu primera aplicación</li>
+                    <li>Verificar que todo funciona correctamente</li>
+                    <li>Resolver problemas comunes de instalación</li>
+                </ul>
+            </div>
+
+            <h2 class="mt-5 mb-4">Requisitos del Sistema</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="requirement-card">
+                        <h5><i class="bi bi-hdd me-2 text-primary"></i>PHP</h5>
+                        <p class="mb-0">PHP 8.0 o superior</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="requirement-card">
+                        <h5><i class="bi bi-database me-2 text-primary"></i>Base de Datos</h5>
+                        <p class="mb-0">MySQL 5.7+ o MariaDB 10.2+</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="requirement-card">
+                        <h5><i class="bi bi-gear me-2 text-primary"></i>Extensiones PHP</h5>
+                        <p class="mb-0">PDO, JSON, OpenSSL, Mbstring</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="requirement-card">
+                        <h5><i class="bi bi-tools me-2 text-primary"></i>Herramientas</h5>
+                        <p class="mb-0">Composer (Gestor de dependencias)</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5 mb-4">Pasos de Instalación</h2>
+
+            <div class="step-card">
+                <h4>1. Crear un Nuevo Proyecto</h4>
+                <p>Abre tu terminal y ejecuta el siguiente comando para crear un nuevo proyecto:</p>
+                <pre><code class="language-bash">composer create-project aureo/framework mi-proyecto</code></pre>
+            </div>
+
+            <div class="step-card">
+                <h4>2. Configurar el Entorno</h4>
+                <p>Copia el archivo de configuración de ejemplo y personalízalo según tus necesidades:</p>
+                <pre><code class="language-bash">cd mi-proyecto
+cp .env.example .env</code></pre>
+                <p>Edita el archivo .env con tu configuración de base de datos y otras variables de entorno:</p>
+                <pre><code class="language-ini">DB_HOST=localhost
+DB_DATABASE=mi_base_de_datos
+DB_USERNAME=usuario
+DB_PASSWORD=contraseña
+
+APP_NAME=MiAplicacion
+APP_ENV=development
+APP_DEBUG=true</code></pre>
+            </div>
+
+            <div class="step-card">
+                <h4>3. Instalar Dependencias</h4>
+                <p>Instala todas las dependencias necesarias con Composer:</p>
+                <pre><code class="language-bash">composer install</code></pre>
+            </div>
+
+            <div class="step-card">
+                <h4>4. Configurar Permisos</h4>
+                <p>Asegúrate de que los directorios de almacenamiento tengan los permisos correctos:</p>
+                <pre><code class="language-bash">chmod -R 775 storage/
+chmod -R 775 public/assets/</code></pre>
+            </div>
+
+            <div class="step-card">
+                <h4>5. Generar Clave de Aplicación</h4>
+                <p>Genera una clave única para tu aplicación:</p>
+                <pre><code class="language-bash">php aureo key:generate</code></pre>
+            </div>
+
+            <div class="step-card">
+                <h4>6. Ejecutar Migraciones</h4>
+                <p>Configura la base de datos ejecutando las migraciones:</p>
+                <pre><code class="language-bash">php aureo migrate</code></pre>
+            </div>
+
+            <div class="step-card">
+                <h4>7. Iniciar el Servidor de Desarrollo</h4>
+                <p>Inicia el servidor de desarrollo incorporado:</p>
+                <pre><code class="language-bash">php aureo serve</code></pre>
+                <p>Tu aplicación estará disponible en <code>http://localhost:8000</code></p>
+            </div>
+
+            <div class="alert alert-success mt-5">
+                <i class="bi bi-check-circle me-2"></i>
+                <strong>¡Felicitaciones!</strong> Has instalado correctamente el Framework Áureo. Ahora puedes comenzar a desarrollar tu aplicación.
+            </div>
+
+            <div class="mt-5">
+                <h2>Siguientes Pasos</h2>
+                <p>Ahora que has instalado Áureo, te recomendamos:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="dashboard.html">Crear tu primer dashboard</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="autenticacion.html">Implementar la autenticación de usuarios</a>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-arrow-right me-2 text-primary"></i>
+                        <a href="vistas.html">Aprender sobre el sistema de vistas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-ini.min.js"></script>
+</body>
+</html>

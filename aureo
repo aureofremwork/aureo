@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+// Cargar variables de entorno
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Obtener el comando y los argumentos
+$command = $argv[1] ?? '';
+$argument = $argv[2] ?? null;
+
+$migrator = new System\Console\MigrateCommand();
+
+switch ($command) {
+    case 'migrate':
+        $migrator->migrate();
+        break;
+
+    case 'migrate:rollback':
+        $migrator->rollback();
+        break;
+
+    case 'db:seed':
+        $migrator->seed($argument);
+        break;
+
+    default:
+        echo "Comandos disponibles:\n";
+        echo "  migrate            Ejecutar todas las migraciones pendientes\n";
+        echo "  migrate:rollback   Revertir todas las migraciones\n";
+        echo "  db:seed           Ejecutar todos los seeders\n";
+        echo "  db:seed [nombre]  Ejecutar un seeder específico\n";
+        break;
+}
