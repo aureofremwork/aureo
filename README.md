@@ -1,8 +1,8 @@
 # Áureo Framework
 
-Áureo es un framework PHP moderno y elegante diseñado para crear aplicaciones web robustas y escalables. Combina la simplicidad con características potentes para ofrecer una experiencia de desarrollo excepcional.
+Áureo es un framework PHP moderno y ligero diseñado para crear aplicaciones web robustas y escalables. Combina la simplicidad con características potentes para ofrecer una experiencia de desarrollo eficiente.
 
-## Características Principales ✨
+## Características 🚀
 
 ✅ Sistema de rutas intuitivo y middleware
 ✅ Integración con AdminLTE para interfaces administrativas

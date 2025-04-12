@@ -1,0 +1,46 @@
+/vendor/
+/node_modules/
+.env
+.env.*
+!.env.example
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+/storage/logs/*
+!/storage/logs/README.md
+*.log
+*.sql
+*.sqlite
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Temporary files
+*.swp
+*.swo
+*~
+*.tmp
+
+# Composer
+composer.phar
+/vendor/
+.phpunit.result.cache
